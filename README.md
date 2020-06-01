@@ -175,7 +175,7 @@ To restart the server, you can remove the pod and it will restart as the auto st
 
 Once the pod is backup you will see the login screen as shown below:
 
-![WCC App4 ](app41.png)
+![WCC App4 ](app4.png)
 and the app dashboad:
 
 ![WCC App5 ](app5.png)
