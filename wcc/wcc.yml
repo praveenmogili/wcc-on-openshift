@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  labels:
+    app: wccontent
+  name: wccontent
+  namespace: usda
+spec:
+  ports:
+  - name: 7001-tcp
+    port: 7001
+    protocol: TCP
+    targetPort: 7001
+  - name: 9001-tcp
+    port: 9001
+    protocol: TCP
+    targetPort: 9001
+  - name: 9002-tcp
+    port: 9002
+    protocol: TCP
+    targetPort: 9002
+  - name: 16200-tcp
+    port: 16200
+    protocol: TCP
+    targetPort: 16200
+  selector:
+    app: wccontent
+    deploymentconfig: wccontent
+  sessionAffinity: None
+  type: ClusterIP
