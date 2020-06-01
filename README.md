@@ -18,9 +18,9 @@ Webcenter Docker Image Needs to be built on a Linux Machine as described in the 
 ### Clone this Repository
 
 1. Navigate to a local directory where you want to clone this repository
-2. Run this command in a terminal: `git clone https://github.com/jhult/wcc-on-docker`
+2. Run this command in a terminal: `git clone git@github.com:praveenmogili/wcc-on-openshift.git`
 
-Alternatively, you can download the entire repository as a zip file by [clicking here](https://github.com/jhult/wcc-on-docker/archive/master.zip).
+Alternatively, you can download the entire repository as a zip file by [clicking here](https://github.com/praveenmogili/wcc-on-openshift/archive/master.zip).
 
 ### Download the wcc binary zip file
 1. Download the binary zip from [here](https://www.oracle.com/middleware/technologies/webcenter-content-download.html) and place in this location: `[CLONED_REPOSITORY_DIRECTORY]/images/wcc/fmw_12.2.1.4.0_wccontent_Disk1_1of1.zip`
