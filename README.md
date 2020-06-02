@@ -7,19 +7,36 @@ This means we need to build two docker containers
 1. Oracle DB Container (version 12.2.0.1)
 2. Oracle FMW Container (version 12.2.1.4)
 
+## Openshift Login / Access Setup
+
+As a pre-requisite steps:
+1. Validate login to Openshift Dashboard. Refer:
+[Intro to Openshift](https://docs.openshift.com/enterprise/3.0/getting_started/developers/developers_console.html)
+2. Validate `oc` CLI login. There are several steps which are performed from `oc` CLI which require you to be logged in to opeshift,
+As described here : 
+[Link to RedHat OpenShift CLI](https://docs.openshift.com/enterprise/3.1/cli_reference/get_started_cli.html)
+
+please make sure you can login to the Openshift Dashboard and copy the login token as shown:
+
+![login Token secret](imgs/token.png)
+
+After copying the login command you can paste in a shell to access the OC CLI. Here is an example below:
+
+```
+$ oc login https://vmdocker02.mythics.lab:8443 --token=am8BpXVkgS8h0WycY09teFxmIQJgfKG2zmlUQo534GI
+```
+
 ## Build Docker Images
 
 ### Building Oracle Database Image 
 
 This image can be imported directly into Openshift from Oracle Container Registry (container-registry.oracle.com/database/enterprise:12.2.0.1) [Link to Oracle](https://container-registry.oracle.com/)
-First create a secret for connecting to this registry.
-Either using oc CLI as below: copy the login token as shown:
 
-![login Token secret](imgs/token.png)
+First create a secret for connecting to this registry.
+Either using oc CLI as shown below:
+
 
 ```
-$ oc login https://vmdocker02.mythics.lab:8443 --token=am8BpXVkgS8h0WycY09teFxmIQJgfKG2zmlUQo534GI
-
 $ oc secret new-dockercfg \
     --docker-server=privateregistry.example.com \
     --docker-username=developer@example.com \
@@ -28,7 +45,7 @@ $ oc secret new-dockercfg \
     private-registry
 ```
 
-secret/private-registry
+
 or from GUI
 
 ![Create secret](imgs/secret.png)
@@ -172,6 +189,31 @@ Accessing the WCC app for first will ask you to select configuration options and
 
 ![WCC App41 ](imgs/app41.png)
 To restart the server, you can remove the pod and it will restart as the auto start/rollout is enablled in the deployment.
+
+Here is an example screenshot of removing a pod:
+
+![WCC Pod Delete ](imgs/pod-delete.png)
+
+`oc` CLI can also be used for deleteing pods:
+first get the name of the pod using
+
+```
+$ oc get pods
+
+NAME                         READY     STATUS             RESTARTS   AGE
+fmw-infrastructure-9-6gx9n   1/1       Running            0          24m
+instantclient-1-pvvg7        0/1       CrashLoopBackOff   9          24m
+oradb1-9-xcdnl               1/1       Running            0          35m
+wccontent-13-6wtp6           1/1       Running            1          26m
+
+```
+
+and then using
+
+```
+$ oc delete pod wccontent-13-6wtp6
+```
+
 
 Once the pod is backup you will see the login screen as shown below:
 
