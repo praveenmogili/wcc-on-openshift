@@ -15,7 +15,7 @@ This image can be imported directly into Openshift from Oracle Container Registr
 First create a secret for connecting to this registry.
 Either using oc CLI as below: copy the login token as shown:
 
-![login Token secret](token.png)
+![login Token secret](imgs/token.png)
 
 ```
 $ oc login https://vmdocker02.mythics.lab:8443 --token=am8BpXVkgS8h0WycY09teFxmIQJgfKG2zmlUQo534GI
@@ -31,7 +31,7 @@ $ oc secret new-dockercfg \
 secret/private-registry
 or from GUI
 
-![Create secret](secret.png)
+![Create secret](imgs/secret.png)
 
 
 Once the oracle container registy is linked successfully import the database and instantclient images using the following:
@@ -45,20 +45,20 @@ Once the oracle container registy is linked successfully import the database and
 
 ### Create the Database Deployment in Openshift
 
-![Create Database Deployment](dbdeploy1.png)
+![Create Database Deployment](imgs/dbdeploy1.png)
 
 Provide a name for the deployemnt and then follow the next screen.
 
-![Create Database Environment](dbdeploy2.png)
+![Create Database Environment](imgs/dbdeploy2.png)
 
 Once all the environment variables are entered save it and click deploy.
 Next navigate to pods screen 
 
-![Pods Screen ](dbdeploy3.png)
+![Pods Screen ](imgs/dbdeploy3.png)
 
 After about 10-15 minutes the database service should be up and running. You can track the progress of the install in the pods logs tab
 
-![Pods Logs Screen ](dbdeploy4.png)
+![Pods Logs Screen ](imgs/dbdeploy4.png)
 
 
 
@@ -68,7 +68,7 @@ Oracle provides a thin instantclient docker image to use sqlplus command from a 
 Using a similar procedure to database import the instantclient image.
 Run this image in a termianl and connect to the database to test the connectivity.
 
-![DB Connectivity Check ](dbconnect1.png)
+![DB Connectivity Check ](imgs/dbconnect1.png)
 
 
 This step validates the database is running correctly in Openshift so that we can proceed to the next step of setting up Java container and installing the Webcenter content server.
@@ -122,28 +122,28 @@ wccontent            172.30.1.1:5000/usda/wccontent            12.2.1.3         
 
 Now, its time to deploy WCC application in Openshift. Click Deploy Image as shown below and select the wccontent image stream uploaded above.
 
-![WCC Deploy 1 ](wcc-deploy1.png)
+![WCC Deploy 1 ](imgs/wcc-deploy1.png)
 
 ### Create the Persistent Storage and Attach it to the deployment
 Add persistent storage for domain configuration data and log files.
 
-![WCC Storage ](wcc-storage1.png)
+![WCC Storage ](imgs/wcc-storage1.png)
 Then attach it in the deployment configuration as shown below:
 
-![WCC Storage ](wcc-storage1.png)
+![WCC Storage ](imgs/wcc-storage1.png)
 ### Create the Environment Variable
 Based on the *wcc.env* file create the environment for WCC app
 
-![WCC Environment ](wcc-environ.png)
+![WCC Environment ](imgs/wcc-environ.png)
 
 ### Deploy the WCC Pod
 Deploy the application and watch the logs for the pods to finish (takes anywhere from 15-20 minutes)
 
-![WCC Pod Logs ](wcc-podlogs.png)
+![WCC Pod Logs ](imgs/wcc-podlogs.png)
 
 Once you see the pod running, 
 
-![WCC Pod Run ](wcc-podrun.png)
+![WCC Pod Run ](imgs/wcc-podrun.png)
 its time to create the service and routes to access the application from the browser.
 
 ### Create the WCC Services in Openshift
@@ -154,31 +154,31 @@ Create services based on the file in `wcc/wcc.yml` downloaded above using the co
 
 Create two route for the WCC application:
 1. for Weblogic admin console for the port 7001 
-![WCC Route1 ](wcc-admin-route.png)
+![WCC Route1 ](imgs/wcc-admin-route.png)
 2. for WCC application for the port 16200
-![WCC Route2 ](wcc-app-route.png)
+![WCC Route2 ](imgs/wcc-app-route.png)
 
 ## Accessing the Application 
 Accessing the console for first time will deploy the application and redirect you to weblogc login page. 
 
-![WCC App1 ](app1.png)
+![WCC App1 ](imgs/app1.png)
 Use the credentials provided in  
 
-![WCC App2 ](app2.png)
+![WCC App2 ](imgs/app2.png)
 Weblogic admin portal:
 
-![WCC App3 ](app3.png)
+![WCC App3 ](imgs/app3.png)
 Accessing the WCC app for first will ask you to select configuration options and restart the node 
 
-![WCC App41 ](app41.png)
+![WCC App41 ](imgs/app41.png)
 To restart the server, you can remove the pod and it will restart as the auto start/rollout is enablled in the deployment.
 
 Once the pod is backup you will see the login screen as shown below:
 
-![WCC App4 ](app4.png)
+![WCC App4 ](imgs/app4.png)
 and the app dashboad:
 
-![WCC App5 ](app5.png)
+![WCC App5 ](imgs/app5.png)
 
 ## Summary
 At a high level the following steps need to be performed for a successful WCC image deployment in Openshift platform.
