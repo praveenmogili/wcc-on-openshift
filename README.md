@@ -124,13 +124,13 @@ Once this is done successfully, you should be able to see this in openshift as f
 ```
 % oc get is  
 NAME                 DOCKER REPO                               TAGS                                                   UPDATED
-docker               172.30.1.1:5000/usda/docker               latest                                                 3 days ago
-enterprise           172.30.1.1:5000/usda/enterprise           12.2.0.1                                               9 days ago
-fmw-infrastructure   172.30.1.1:5000/usda/fmw-infrastructure   12.2.1.3-200316,12.2.1.4-200316,12.2.1.3 + 1 more...   3 days ago
-instantclient        172.30.1.1:5000/usda/instantclient        latest                                                 9 days ago
-oraclelinux          172.30.1.1:5000/usda/oraclelinux          7                                                      9 days ago
-oradb                172.30.1.1:5000/usda/oradb                12.2.0.1-ee                                            
-wccontent            172.30.1.1:5000/usda/wccontent            12.2.1.3                                               24 hours ago
+docker               172.30.1.1:5000/project/docker               latest                                                 3 days ago
+enterprise           172.30.1.1:5000/project/enterprise           12.2.0.1                                               9 days ago
+fmw-infrastructure   172.30.1.1:5000/project/fmw-infrastructure   12.2.1.3-200316,12.2.1.4-200316,12.2.1.3 + 1 more...   3 days ago
+instantclient        172.30.1.1:5000/project/instantclient        latest                                                 9 days ago
+oraclelinux          172.30.1.1:5000/project/oraclelinux          7                                                      9 days ago
+oradb                172.30.1.1:5000/project/oradb                12.2.0.1-ee                                            
+wccontent            172.30.1.1:5000/project/wccontent            12.2.1.3                                               24 hours ago
 ```
 
 ## WCC Deployment in Openshift
@@ -147,7 +147,7 @@ Add persistent storage for domain configuration data and log files.
 ![WCC Storage ](imgs/wcc-storage1.png)
 Then attach it in the deployment configuration as shown below:
 
-![WCC Storage ](imgs/wcc-storage1.png)
+![WCC Storage ](imgs/wcc-storage2.png)
 ### Create the Environment Variable
 Based on the *wcc.env* file create the environment for WCC app
 
